@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-6 login-form">
+    <h2>Inserisci Customer</h2>
+    <div class="form-group">
+      <input *ngIf="!utente" [(ngModel)]="nomeUtente" type="text" class="form-control"  id="nome" placeholder="Nome">
+      <input *ngIf="utente" [(ngModel)]="nomeUtente" type="text" class="form-control"  id="nomeU" placeholder="Nome" value="{{nomeUtente}}">
+    </div>
+    <br>
+    <div class="form-group">
+      <input *ngIf="!utente" [(ngModel)]="cognomeUtente" type="text" class="form-control"  id="cognome" placeholder="Cognome">
+      <input *ngIf="utente" [(ngModel)]="cognomeUtente" type="text" class="form-control"  id="cognomeU" placeholder="Cognome" value="{{cognomeUtente}}">
+    </div>
+    <br>
+    <div class="form-group">
+      <span>Data di nascita</span>
+      <input type="date" *ngIf="!utente" [(ngModel)]="dataUtenteNascita" class="form-control"  id="dataNascita" placeholder="Data di nascita">
+      <!--<input type="date" *ngIf="utente" [(ngModel)]="dataUtenteNascita" (ngModelChange)="dataUtenteNascita = $event" value="{{dataUtenteNascita | date: 'yyyy-MM-dd'}}" class="form-control"  id="dataNascitaU">-->
+      <input type="date" *ngIf="utente" [(ngModel)]="dataUtente" (ngModelChange)="dataUtenteNascita = $event" value="{{dataUtente}}" class="form-control"  id="dataNascitaU">
+    </div>
+    <br>
+    <div class="form-group">
+      <input type="password" class="form-control"  id="password" placeholder="password">
+    </div>
+    <br>
+    <div class="form-group">
+      <app-button *ngIf="!isAdmin" (click)="modificaUtente()" [buttonConfig]="buttonConfiguration"></app-button>
+      <app-button *ngIf="isAdmin" (click)="salvaUtente()" [buttonConfig]="buttonConfiguration"></app-button>
+    </div>
+  </div>
+</div>

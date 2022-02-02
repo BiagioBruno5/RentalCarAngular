@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-6 login-form">
+    <h2>Inserisci Veicolo</h2>
+    <div class="form-group">
+      <input *ngIf="!veicolo" [(ngModel)]="veicolo.numeroTelaio" type="text" class="form-control"  id="numeroTelaio" placeholder="Numero Telaio">
+      <input *ngIf="veicolo" [(ngModel)]="veicolo.numeroTelaio" type="text" class="form-control"  id="numeroTelaioV" placeholder="Numero Telaio" value="{{veicolo.numeroTelaio}}">
+    </div>
+    <br>
+
+    <div class="form-group">
+      <input *ngIf="!veicolo" [(ngModel)]="veicolo.casaCostruttrice" type="text" class="form-control"  id="casaCostruttrice" placeholder="Casa Costruttrice">
+      <input *ngIf="veicolo" [(ngModel)]="veicolo.casaCostruttrice" type="text" class="form-control"  id="casaCostruttriceV" placeholder="Casa Costruttrice" value="{{veicolo.casaCostruttrice}}">
+    </div>
+    <br>
+
+    <div class="form-group">
+      <input *ngIf="!veicolo" [(ngModel)]="veicolo.modello" type="text" class="form-control"  id="modello" placeholder="Modello">
+      <input *ngIf="veicolo" [(ngModel)]="veicolo.modello" type="text" class="form-control"  id="modelloV" placeholder="Modello" value="{{veicolo.modello}}">
+    </div>
+    <br>
+
+    <div class="form-group">
+      <input *ngIf="!veicolo" [(ngModel)]="veicolo.tipologia" type="text" class="form-control"  id="tipologia" placeholder="Tipologia">
+      <input *ngIf="veicolo" [(ngModel)]="veicolo.tipologia" type="text" class="form-control"  id="tipologiaV" placeholder="Tipologia" value="{{veicolo.tipologia}}">
+    </div>
+    <br>
+
+    <div class="form-group">
+      <app-button *ngIf="modifica" (click)="modificaVeicolo()" [buttonConfig]="buttonConfiguration"></app-button>
+      <app-button *ngIf="aggiunta" (click)="salvaVeicolo()" [buttonConfig]="buttonConfiguration"></app-button>
+    </div>
+  </div>
+</div>

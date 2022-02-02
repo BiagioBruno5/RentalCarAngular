@@ -1,0 +1,9 @@
+<!-- TABLE -->
+  <app-table
+             [tableConfig]="headTable"
+             [data]="popolazioneDada"
+             [aggiunta]="true"
+             (button)="handleButton($event)"
+             (addClient)="handleAdd($event)">
+  </app-table>
+

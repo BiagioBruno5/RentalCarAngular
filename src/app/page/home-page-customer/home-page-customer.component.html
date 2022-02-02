@@ -1,0 +1,18 @@
+<app-table [tableConfig]="headTable"
+           [data]="popolazioneDada"
+           (button)="handleButton($event)"
+           (addClient)="handleAddCliente($event)">
+</app-table>
+
+
+<!--
+<app-table [tableConfig]="headTable"
+           [data]="popolazioneDada"
+           [bottoneElimina]="true"
+           [bottoneModifica]="true"
+           (edit)="handleEdit($event)"
+           (delate)="handleDelate($event)"
+           (showPrenotazioni)="handleShowPrenotazioni($event)"
+           (addClient)="handleAddCliente($event)">
+</app-table>
+-->

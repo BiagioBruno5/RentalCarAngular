@@ -1,0 +1,38 @@
+<app-table *ngIf="!isCustomer"
+           [tableConfig]="headTable"
+           [data]="popolazioneDada"
+           [aggiunta]="true"
+           (button)="handleButton($event)"
+           (addClient)="handleAdd($event)">
+</app-table>
+
+<app-table *ngIf="isCustomer"
+           [tableConfig]="headTable"
+           [data]="popolazioneDada"
+           (button)="handleButton($event)"
+           (addClient)="handleAdd($event)">
+</app-table>
+
+
+<!--
+<app-table *ngIf="!isCustomer"
+           [tableConfig]="headTable"
+           [data]="popolazioneDada"
+           [bottoneElimina]="true"
+           [bottoneModifica]="true"
+           [aggiunta]="true"
+           (edit)="handleEdit($event)"
+           (delate)="handleDelate($event)"
+           (showPrenotazioni)="handleShowPrenotazioni($event)"
+           (addClient)="handleAdd($event)">
+</app-table>
+
+<app-table *ngIf="isCustomer"
+           [tableConfig]="headTable"
+           [data]="popolazioneDada"
+           (edit)="handleEdit($event)"
+           (delate)="handleDelate($event)"
+           (showPrenotazioni)="handleShowPrenotazioni($event)"
+           (addClient)="handleAdd($event)">
+</app-table>
+-->

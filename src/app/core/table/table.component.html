@@ -1,0 +1,201 @@
+<div style="margin-right: 20%; margin-left: 20%">
+  <br>
+  <div style=" width: 100%;">
+    <input [(ngModel)]="ricercaElemento" type="text"  placeholder="cerca" class="form-control" style="width: 100%;">
+  </div>
+  <br>
+  <div class="container" style=" width: 100%;">
+    <div class="row">
+      <div class="col-md-11" style=" padding-left: 0px">
+        <select id="listaDiSelezione" class="form-select" aria-label="multiple select example">
+          <option *ngFor = "let headTable of tableConfig.headers" value="{{headTable.key}}"> {{headTable.label}} </option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <app-button (click)="filtroCampiTabella()" [buttonConfig]="buttonConfiguration"></app-button>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <table class="table table-striped table-dark">
+    <thead>
+    <tr>
+      <th scope="col" *ngFor = "let headTable of tableConfig.headers" id="{{headTable.key}}">
+        <i
+          class="fa fa-plus-circle cursor-pointer"
+          aria-hidden="true"
+          style="color: #4f764f"
+          (click)="sortTable(headTable.key)"
+        >
+          <svg *ngIf="currentOrderAsc && visualizzaFreccia == headTable.key" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg>
+
+          <svg *ngIf="currentOrderDis && visualizzaFreccia == headTable.key" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+          </svg>
+
+          {{headTable.label}}
+        </i>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let dati of data | slice: inizioDatiDaAnalizzare : fineDatiDaAnalizzare">
+      <td *ngFor="let headTable of tableConfig.headers">{{dati[headTable.key]}}</td>
+
+      <td *ngFor="let action of tableConfig.actions; let i = index"><app-button (click)="buttonFunction(dati, action)" [buttonConfig]="buttonConfigurationTable[i]"></app-button></td>
+
+    </tr>
+    <tr>
+      <td *ngIf="aggiunta" colspan="100"><app-button (click)="aggiungiF()" [buttonConfig]="buttonConfigurationAggiunta"></app-button></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style="display: table; width: 100%;">
+
+    <p style="text-align: left; width: 100%;">
+      visualizza
+      <select id="visualizzaElementi" [ngModel]="tableConfig.pagination.itemPerPage" (ngModelChange)="onChange($event)">
+        <option *ngFor = "let numeroElementi of tableConfig.pagination.itemPerPageOptions"
+                value="{{numeroElementi}}">
+          {{numeroElementi}}
+        </option>
+      </select>
+      elementi
+    </p>
+
+    <div style="display: table-cell; width: 45%">
+
+      <i class="fa fa-plus-circle cursor-pointer"
+         aria-hidden="true"
+         style="color: #1486e1"
+         (click)="visualizzaMenoElementi()">
+
+        <p style="float:left; margin-bottom: 0%">< indietro</p>
+
+      </i>
+
+      <i class="fa fa-plus-circle cursor-pointer"
+         aria-hidden="true"
+         style="color: #1486e1"
+         (click)="visualizzaElementi()">
+
+        <p style="float:right; margin-bottom: 0%">visualizza altri elementi ></p>
+
+      </i>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+
+<!--
+<div style="margin-right: 20%; margin-left: 20%">
+  <br>
+  <div style=" width: 100%;">
+    <input [(ngModel)]="ricercaElemento" type="text"  placeholder="cerca" class="form-control" style="width: 100%;">
+  </div>
+  <br>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-11">
+        <select id="listaDiSelezione" class="form-select" aria-label="multiple select example">
+          <option *ngFor = "let headTable of tableConfig.headers" value="{{headTable.key}}"> {{headTable.label}} </option>
+        </select>
+      </div>
+
+      <div class="col-1">
+        <app-button (click)="filtroCampiTabella()" [buttonConfig]="buttonConfiguration"></app-button>
+      </div>
+    </div>
+  </div>
+
+  <br>
+  <br>
+
+  <table class="table table-striped table-dark">
+    <thead>
+    <tr>
+      <th scope="col" *ngFor = "let headTable of tableConfig.headers" id="{{headTable.key}}">
+        <i
+          class="fa fa-plus-circle cursor-pointer"
+          aria-hidden="true"
+          style="color: #4f764f"
+          (click)="sortTable(headTable.key)"
+        >
+          <svg *ngIf="currentOrderAsc && visualizzaFreccia == headTable.key" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+          </svg>
+
+          <svg *ngIf="currentOrderDis && visualizzaFreccia == headTable.key" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+          </svg>
+
+          {{headTable.label}}
+        </i>
+      </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor = "let dati of data | slice: inizioDatiDaAnalizzare : elementiDaVisualizzare">
+      <td *ngFor="let headTable of tableConfig.headers">{{dati[headTable.key]}}</td>
+
+      <td *ngIf="bottoneModifica"><app-button (click)="editF(dati)" [buttonConfig]="buttonConfigurationModifica"></app-button></td>
+
+      <td *ngIf="bottoneElimina"><app-button (click)="delateF(dati)" [buttonConfig]="buttonConfigurationElimina"></app-button></td>
+
+      <td *ngIf="bottoneVisualizza"><app-button (click)="visualizzaF(dati)" [buttonConfig]="buttonConfigurationVisualizzaPrenotazioni"></app-button></td>
+    </tr>
+    <tr>
+      <td *ngIf="aggiunta" colspan="100"><app-button (click)="aggiungiF()" [buttonConfig]="buttonConfigurationAggiunta"></app-button></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <div style="display: table; width: 100%;">
+
+    <p style="text-align: left; width: 100%;">
+      visualizza
+      <select id="visualizzaElementi" [(ngModel)]="elementiDaVisualizzare" >
+        <option *ngFor = "let numeroElementi of tableConfig.pagination.itemPerPageOptions"
+                value="{{numeroElementi}}">
+          {{numeroElementi}}
+        </option>
+      </select>
+      elementi
+    </p>
+
+    <div style="display: table-cell; width: 45%">
+
+      <i class="fa fa-plus-circle cursor-pointer"
+         aria-hidden="true"
+         style="color: #1486e1"
+         (click)="visualizzaMenoElementi()">
+
+        <p style="float:left; margin-bottom: 0%">< indietro</p>
+
+      </i>
+
+      <i class="fa fa-plus-circle cursor-pointer"
+         aria-hidden="true"
+         style="color: #1486e1"
+         (click)="visualizzaElementi()">
+
+        <p style="float:right; margin-bottom: 0%">visualizza altri elementi ></p>
+
+      </i>
+
+    </div>
+
+  </div>
+
+</div>
+-->

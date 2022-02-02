@@ -1,0 +1,26 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto" style="width: 80%">
+
+      <li class="nav-item" style="padding-left: 5%; padding-right: 5%;">
+        <a class="navbar-brand" style="color: aliceblue" href="#">Home</a>
+      </li>
+
+      <li class="nav-item" style="padding-left: 5%; padding-right: 5%;">
+        <a *ngIf="isAdmin" class="nav-link" style="color: aliceblue" href="#">Parco veicoli</a>
+        <a *ngIf="!isAdmin" class="nav-link" style="color: aliceblue" href="#">Parco veicoli</a>
+      </li>
+      <li class="nav-item" style="padding-left: 5%; padding-right: 5%;">
+        <a *ngIf="isAdmin" class="nav-link disabled" style="color: aliceblue" href="#">Profilo utenti</a>
+        <a *ngIf="!isAdmin" class="nav-link disabled" style="color: aliceblue" href="#">Visualizza prenotazioni</a>
+      </li>
+      <li class="nav-item" style="padding-left: 5%; padding-right: 5%;">
+        <a *ngIf="isAdmin" class="nav-link disabled" style="color: aliceblue" href="#">Log-out</a>
+        <a *ngIf="!isAdmin" class="nav-link disabled" style="color: aliceblue" href="#">Log-out</a>
+      </li>
+
+    </ul>
+  </div>
+</nav>
+
+<br>

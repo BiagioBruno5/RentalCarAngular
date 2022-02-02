@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center">
+    <div class="col-md-6 login-form">
+      <h2>Inserisci o Gestisci Prenotazione</h2>
+      <div class="form-group">
+        <!--<input *ngIf="!prenotazione" type="date" class="form-control"  id="dataInizio" placeholder="Data inizio">-->
+        <input type="date" [(ngModel)]="dataInizio" class="form-control" value="{{dataInizio}}" id="dataInizioP">
+      </div>
+      <br>
+      <div class="form-group">
+        <!--<input *ngIf="!prenotazione" type="date" class="form-control"  id="dataFine" placeholder="Data fine">-->
+        <input type="date" [(ngModel)]="dataFine" class="form-control" value="{{dataFine}}" id="dataFineP">
+      </div>
+      <br>
+      <!--
+      <div class="form-group">
+        <select class="form-select" aria-label="Default select example">
+          <option>  </option>
+        </select>
+      </div>
+      -->
+      <br>
+      <div class="form-group">
+        <app-button *ngIf="salva" (click)="modifiaPrenotazione()" [buttonConfig]="buttonConfiguratio"></app-button>
+        <app-button *ngIf="modifica" (click)="salvaPrenotazione()" [buttonConfig]="buttonConfiguratio"></app-button>
+      </div>
+    </div>
+</div>
